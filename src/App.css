@@ -68,7 +68,7 @@ body {
 /* Main layout */
 .app-main {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) 380px;
+  grid-template-columns: minmax(260px, 1fr) minmax(260px, 1fr) 380px;
   gap: 2rem;
   padding: 2rem;
 }
@@ -86,7 +86,6 @@ body {
   background: var(--secondary-color);
   padding: 2rem;
   border-radius: var(--border-radius);
-  margin-bottom: 2rem;
 }
 
 .config-form h2 {

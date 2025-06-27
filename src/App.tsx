@@ -73,20 +73,22 @@ function App() {
         </header>
 
         <main className="app-main">
-          <div className="generator-section">
+          <section className="params-section">
             <NameConfigForm
               config={config}
               onConfigChange={setConfig}
               onGenerate={handleGenerate}
               isGenerating={isGenerating}
             />
-            
+          </section>
+
+          <section className="names-section">
             <GeneratedNames
               generatedNames={generatedNames}
               onSelectName={handleSelectName}
               error={error}
             />
-          </div>
+          </section>
 
           <aside className="history-section">
             <UsedNamesHistory
