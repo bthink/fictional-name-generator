@@ -58,7 +58,15 @@ export const getUsedNamesForGeneration = (): string[] => {
 
 export const exportUsedNames = (): void => {
   const usedNames = loadUsedNames();
-  const dataStr = JSON.stringify(usedNames, null, 2);
+  
+  // Uproszony format eksportu - tylko podstawowe dane
+  const simplifiedData = usedNames.map(name => ({
+    name: name.name,
+    normalizedName: name.normalizedName,
+    selectedAt: name.selectedAt
+  }));
+  
+  const dataStr = JSON.stringify(simplifiedData, null, 2);
   const dataBlob = new Blob([dataStr], { type: 'application/json' });
   
   const link = document.createElement('a');
@@ -76,27 +84,34 @@ export const importUsedNames = (file: File): Promise<UsedName[]> => {
     reader.onload = (e) => {
       try {
         const content = e.target?.result as string;
-        const importedNames: UsedName[] = JSON.parse(content);
+        const importedData = JSON.parse(content);
         
         // Walidacja struktury
-        if (!Array.isArray(importedNames)) {
+        if (!Array.isArray(importedData)) {
           throw new Error('Nieprawidłowy format pliku');
         }
         
-        // Sprawdź czy każdy element ma wymagane pola
-        const isValid = importedNames.every(name => 
-          typeof name.name === 'string' &&
-          typeof name.normalizedName === 'string' &&
-          typeof name.selectedAt === 'number' &&
-          name.config
+        // Sprawdź czy każdy element ma wymagane pola (tylko podstawowe)
+        const isValid = importedData.every(item => 
+          typeof item.name === 'string' &&
+          typeof item.normalizedName === 'string' &&
+          typeof item.selectedAt === 'number'
         );
         
         if (!isValid) {
           throw new Error('Nieprawidłowa struktura danych');
         }
         
-        saveUsedNames(importedNames);
-        resolve(importedNames);
+        // Konwertuj do pełnego formatu UsedName (dodaj domyślny config)
+        const fullUsedNames: UsedName[] = importedData.map(item => ({
+          name: item.name,
+          normalizedName: item.normalizedName,
+          selectedAt: item.selectedAt,
+          config: item.config || { style: 'serious', origin: 'polish' } // Domyślny config dla starych danych
+        }));
+        
+        saveUsedNames(fullUsedNames);
+        resolve(fullUsedNames);
       } catch (error) {
         reject(new Error('Błąd importu: ' + (error as Error).message));
       }

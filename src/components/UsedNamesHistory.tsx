@@ -47,11 +47,7 @@ export const UsedNamesHistory: FC<UsedNamesHistoryProps> = ({
     }
   };
 
-  const formatConfig = (config: UsedName['config']) => {
-    const style = config.style === 'serious' ? 'poważne' : 'kapitan bomba';
-    const origin = config.origin === 'polish' ? 'polskie' : 'zagraniczne';
-    return `${style}, ${origin}`;
-  };
+  // Usunięto formatConfig - nie pokazujemy już szczegółów konfiguracji
 
   return (
     <div className="used-names-history">
@@ -92,7 +88,6 @@ export const UsedNamesHistory: FC<UsedNamesHistoryProps> = ({
               <div key={index} className="history-item">
                 <div className="name-info">
                   <div className="name">{usedName.name}</div>
-                  <div className="config">{formatConfig(usedName.config)}</div>
                 </div>
                 <div className="date">
                   {new Date(usedName.selectedAt).toLocaleString()}
