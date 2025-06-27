@@ -48,10 +48,9 @@ export const UsedNamesHistory: FC<UsedNamesHistoryProps> = ({
   };
 
   const formatConfig = (config: UsedName['config']) => {
-    const parts = `${config.parts} ${config.parts === 1 ? 'człon' : 'człony'}`;
     const style = config.style === 'serious' ? 'poważne' : 'kapitan bomba';
     const origin = config.origin === 'polish' ? 'polskie' : 'zagraniczne';
-    return `${parts}, ${style}, ${origin}`;
+    return `${style}, ${origin}`;
   };
 
   return (

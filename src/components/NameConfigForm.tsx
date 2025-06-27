@@ -26,20 +26,6 @@ export const NameConfigForm: FC<NameConfigFormProps> = ({
       <h2>Generator Fikcyjnych Imion</h2>
       
       <div className="form-group">
-        <label htmlFor="parts">Liczba członów imienia:</label>
-        <select
-          id="parts"
-          value={config.parts}
-          onChange={(e) => handleChange('parts', parseInt(e.target.value))}
-          disabled={isGenerating}
-        >
-          <option value={1}>1 człon (np. "Bartosz")</option>
-          <option value={2}>2 człony (np. "Bartosz Niszczyciel")</option>
-          <option value={3}>3 człony (np. "Bartosz Niszczyciel Dusz")</option>
-        </select>
-      </div>
-
-      <div className="form-group">
         <label htmlFor="style">Styl imienia:</label>
         <select
           id="style"
@@ -72,6 +58,10 @@ export const NameConfigForm: FC<NameConfigFormProps> = ({
       >
         {isGenerating ? 'Generuję...' : 'Generuj Imiona'}
       </button>
+      
+      <p className="form-hint">
+        Imiona mogą być krótkie lub długie - AI zdecyduje o liczbie członów.
+      </p>
     </div>
   );
 }; 

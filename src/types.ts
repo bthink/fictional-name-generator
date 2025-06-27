@@ -1,5 +1,4 @@
 export interface NameConfig {
-  parts: number; // 1-3 człony
   style: 'serious' | 'kapitan-bomba'; // poważne vs. kapitan bomba
   origin: 'polish' | 'foreign'; // polskie vs. zagraniczne
 }

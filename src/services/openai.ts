@@ -7,21 +7,15 @@ const openai = new OpenAI({
 });
 
 export const generateNames = async (config: NameConfig, usedNames: string[]): Promise<string[]> => {
-  const { parts, style, origin } = config;
+  const { style, origin } = config;
   
   const styleDescription = style === 'serious' 
-    ? 'poważne, realistyczne' 
+    ? 'poważne, epickie, realistyczne' 
     : 'zabawne, w stylu serialu "Kapitan Bomba" (polskie imiona jak Przemek, Dominik, Grzegorz)';
     
   const originDescription = origin === 'polish' 
     ? 'polskie' 
     : 'zagraniczne (angielskie, niemieckie, francuskie itp.)';
-    
-  const partsDescription = parts === 1 
-    ? 'składające się z jednego słowa (np. "Bartosz")'
-    : parts === 2 
-    ? 'składające się z dwóch słów (np. "Bartosz Niszczyciel")'
-    : 'składające się z trzech słów (np. "Bartosz Niszczyciel Dusz")';
 
   const usedNamesText = usedNames.length > 0 
     ? `\n\nUnikaj tych już użytych imion: ${usedNames.join(', ')}`
@@ -30,16 +24,16 @@ export const generateNames = async (config: NameConfig, usedNames: string[]): Pr
   const prompt = `Wygeneruj dokładnie 3 różne imiona postaci do gier fantasy/RPG o następujących parametrach:
 
 - Styl: ${styleDescription}
-- Pochodzenie: ${originDescription}  
-- Struktura: ${partsDescription}
+- Pochodzenie: ${originDescription}
 
+Imiona mogą być jedno- lub wieloczłonowe (dowolna liczba słów), wybieraj kreatywnie.
 Każde imię zwróć w osobnej linii, bez numeracji, bez dodatkowych opisów.${usedNamesText}
 
-Przykłady dla różnych konfiguracji:
-- Poważne polskie 1 człon: "Bartosz"
-- Poważne polskie 2 człony: "Bartosz Niszczyciel" 
-- Poważne polskie 3 człony: "Bartosz Niszczyciel Dusz"
-- Kapitan Bomba style: "Przemek", "Dominik Władca", "Grzegorz Mistrz Kiełbasy"`;
+Przykłady różnych długości:
+- Krótkie: "Bartosz", "Ragnar", "Elsa"
+- Średnie: "Bartosz Niszczyciel", "Aragorn Wędrówka", "Zelda Mądrość"  
+- Długie: "Bartosz Niszczyciel Dusz", "Aragorn Syn Aratorna", "Gandalf Szary Czarodziej"
+- Kapitan Bomba: "Przemek", "Dominik Władca", "Grzegorz Mistrz Kiełbasy"`;
 
   try {
     const response = await openai.chat.completions.create({

@@ -9,7 +9,6 @@ import './App.css';
 
 function App() {
   const [config, setConfig] = useState<NameConfig>({
-    parts: 2,
     style: 'serious',
     origin: 'polish'
   });

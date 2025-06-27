@@ -151,6 +151,14 @@ body {
   transform: none;
 }
 
+.form-hint {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
 /* Generated names */
 .generated-names {
   padding: 2rem;
