@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { NameConfig, GeneratedName, UsedName } from './types';
 import { NameConfigForm } from './components/NameConfigForm';
 import { GeneratedNames } from './components/GeneratedNames';

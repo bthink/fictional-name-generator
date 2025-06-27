@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import type { NameConfig } from '../types';
 
 interface NameConfigFormProps {
@@ -8,7 +8,7 @@ interface NameConfigFormProps {
   isGenerating: boolean;
 }
 
-export const NameConfigForm: React.FC<NameConfigFormProps> = ({
+export const NameConfigForm: FC<NameConfigFormProps> = ({
   config,
   onConfigChange,
   onGenerate,

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import type { GeneratedName } from '../types';
 import { isNameUsed } from '../services/storage';
 
@@ -8,7 +8,7 @@ interface GeneratedNamesProps {
   error: string | null;
 }
 
-export const GeneratedNames: React.FC<GeneratedNamesProps> = ({
+export const GeneratedNames: FC<GeneratedNamesProps> = ({
   generatedNames,
   onSelectName,
   error
@@ -35,12 +35,13 @@ export const GeneratedNames: React.FC<GeneratedNamesProps> = ({
     <div className="generated-names">
       <h3>Wybierz jedno z wygenerowanych imion:</h3>
       <div className="names-list">
-        {generatedNames.map((nameObj) => {
+        {generatedNames.map((nameObj, index) => {
           const isUsed = isNameUsed(nameObj.name);
-          
+
           return (
             <div key={nameObj.id} className="name-card">
               <div className="name-text">
+                <span className="name-index">{index + 1}.</span>
                 {nameObj.name}
                 {isUsed && <span className="used-indicator">(już użyte)</span>}
               </div>

@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
+import type { FC } from 'react';
 import type { UsedName } from '../types';
 import { exportUsedNames, importUsedNames, clearUsedNames } from '../services/storage';
 
@@ -7,7 +8,7 @@ interface UsedNamesHistoryProps {
   onUsedNamesUpdate: (names: UsedName[]) => void;
 }
 
-export const UsedNamesHistory: React.FC<UsedNamesHistoryProps> = ({
+export const UsedNamesHistory: FC<UsedNamesHistoryProps> = ({
   usedNames,
   onUsedNamesUpdate
 }) => {
