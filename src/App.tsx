@@ -97,12 +97,7 @@ function App() {
           </aside>
         </main>
 
-        <footer className="app-footer">
-          <p>
-            Potrzebujesz klucza OpenAI API w pliku <code>.env</code>: 
-            <code>VITE_OPENAI_API_KEY=your_key_here</code>
-          </p>
-        </footer>
+        
       </div>
     </div>
   );
